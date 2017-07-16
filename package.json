@@ -6,7 +6,7 @@
   },
   "private": true,
   "scripts": {
-    "start": "nodejs ./bin/www"
+    "start": "node server.js"
   },
   "dependencies": {
     "express": "~4.0.0",
