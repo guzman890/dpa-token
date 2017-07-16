@@ -4,10 +4,10 @@ require('./user');
 
 
 //var dbURI = 'mongodb://localhost/ArduinoDPA';
-var dbURI = 'mongodb://guzman890:km4l30nc1t0@ds147872.mlab.com:47872/dpa-token'
-if (process.env.NODE_ENV === 'production') {
+var dbURI = 'mongodb://admin:admin@ds147872.mlab.com:47872/dpa-token';
+/*if (process.env.NODE_ENV === 'production') {
   dbURI = process.env.MONGOLAB_URI;
-}
+}*/
 mongoose.connect(dbURI);
 
 mongoose.connection.on('connected', function () {
