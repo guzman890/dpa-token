@@ -1,13 +1,9 @@
 {
   "name": "DPA-token",
   "version": "0.0.1",
-  "private": true,
   "engines": {
     "node": "4.2.6",
     "npm": "2.1.x"
-  },
-  "scripts": {
-    "start": "nodejs ./bin/www"
   },
   "dependencies": {
     "express": "4.15.3",
