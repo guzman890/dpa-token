@@ -2,7 +2,7 @@
   "name": "application-name",
   "version": "0.0.1",
   "engines": {
-    "node": "6.11.1"
+    "nodejs": "6.11.1"
   },
   "private": true,
   "scripts": {
