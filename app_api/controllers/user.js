@@ -39,7 +39,7 @@ module.exports.UserReadOne = function(req, res) {
                     sendJsonResponse(res, 404, err);
                     return;
                 }
-                sendJsonResponse(res, 200, {token:user.CUI});
+                sendJsonResponse(res, 200, user.Token);
             });
     } else {
         sendJsonResponse(res, 404, {
@@ -48,11 +48,47 @@ module.exports.UserReadOne = function(req, res) {
     }
 };
 
+module.exports.validToken = function(req, res) {
+    
+        var token = req.query.token;
+        var cui = req.query.CUI
+       
+        Arduino
+            .find({CUI: cui})
+            .exec(function(err, user) {
+                console.log("where is");
+                if (!user) {
+                    sendJsonResponse(res, 404, {
+                        "message": "userid not found"}
+                        );
+                    return;
+                } else if (err) {
+                    sendJsonResponse(res, 404, err);
+                    return;
+                }
+
+                if(user[0].Token == token){ 
+                    //user[0].Token = "*";
+                    //user[0].save(function(err, userB) {
+                    if (err) {
+                        sendJsonResponse(res, 404, err);
+                    } else {
+                        sendJsonResponse(res, 200, {response: "ok"});
+                    }
+                //});
+                }
+                else
+                    sendJsonResponse(res, 200, {response: "No"});
+            });
+
+};
+
 module.exports.UserCreate = function(req, res) {
 
        Arduino.create({
-	CUI:req.body.CUI,
+	    CUI:req.body.CUI,
     	Name:req.body.Name,
+        Token:req.body.Token,
 
     }, function(err,userB){
         if(err){
@@ -88,10 +124,11 @@ module.exports.UserUpdateOne = function(req, res) {
                     return;
                 }
 
-		post.CUI=req.body.CUI;	
-	    	post.Name=req.body.Name;
+		    userB.CUI=req.body.CUI;	
+	    	userB.Name=req.body.Name;
+            userB.Token=req.body.Token;
                 
-		post.save(function(err, userB) {
+		userB.save(function(err, userB) {
                     if (err) {
                         sendJsonResponse(res, 404, err);
                     } else {
