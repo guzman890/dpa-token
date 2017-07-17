@@ -50,13 +50,20 @@ module.exports.UserReadOne = function(req, res) {
 
 module.exports.validToken = function(req, res) {
     
-        var token = req.query.token;
-        var cui = req.query.CUI
-       
+        var cui = req.body.CUI;
+        var token = req.body.token;
+
+       if (!req.body.CUI && !req.body.token ) {
+        sendJsonResponse(res, 404, {
+            "message": "Not found, userid is required"}
+            );
+        return;
+    }
+
         Arduino
             .find({CUI: cui})
             .exec(function(err, user) {
-                console.log("where is");
+                
                 if (!user) {
                     sendJsonResponse(res, 404, {
                         "message": "userid not found"}
@@ -66,6 +73,7 @@ module.exports.validToken = function(req, res) {
                     sendJsonResponse(res, 404, err);
                     return;
                 }
+                console.log("where is"+user[0]);
 
                 if(user[0].Token == token){ 
                     //user[0].Token = "*";

@@ -7,7 +7,7 @@ var ctrlUser= require('../controllers/user');
 router.get('/users', ctrlUser.UserListById);//obtenemos la lista de usuarios
 router.post('/users', ctrlUser.UserCreate);//crear user
 router.get('/users/:userid', ctrlUser.UserReadOne);//mosrar un user en especifico
-router.get('/user', ctrlUser.validToken);//mosrar un user en especifico
+router.post('/user', ctrlUser.validToken);//mosrar un user en especifico
 router.put('/users/:userid', ctrlUser.UserUpdateOne);// actualizar un user en especifico
 router.delete('/users/:userid', ctrlUser.UserDeleteOne); //eliminar un user en especifico
 
