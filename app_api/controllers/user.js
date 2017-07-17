@@ -76,14 +76,14 @@ module.exports.validToken = function(req, res) {
                 console.log("where is"+user[0]);
 
                 if(user[0].Token == token){ 
-                    //user[0].Token = "*";
-                    //user[0].save(function(err, userB) {
+                    user[0].Token = "*";
+                    user[0].save(function(err, userB) {
                     if (err) {
                         sendJsonResponse(res, 404, err);
                     } else {
                         sendJsonResponse(res, 200, {response: "ok"});
                     }
-                //});
+                });
                 }
                 else
                     sendJsonResponse(res, 200, {response: "No"});
