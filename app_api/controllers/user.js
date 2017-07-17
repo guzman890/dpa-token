@@ -39,7 +39,17 @@ module.exports.UserReadOne = function(req, res) {
                     sendJsonResponse(res, 404, err);
                     return;
                 }
-                sendJsonResponse(res, 200, user.Token);
+                if(user.Token == "*"){
+                    user.Token = ""+Math.floor(Math.random() * (1000000 - 100000) + 100000);
+                    user.save(function(err, userB) {
+                        if (err) {
+                            sendJsonResponse(res, 404, err);
+                        } else {
+                            sendJsonResponse(res, 200, "*");
+                        }
+                    });
+                }else
+                    sendJsonResponse(res, 200, user.Token);
             });
     } else {
         sendJsonResponse(res, 404, {
