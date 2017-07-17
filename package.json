@@ -1,17 +1,18 @@
 {
-  "name": "DPA-token",
-  "version": "0.0.1",
-  "engines": {
-    "node": "4.2.6",
-    "npm": "2.1.x"
+  "name": "dpatoken",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
   },
   "dependencies": {
-    "express": "4.15.3",
-    "static-favicon": "2.0.0-alpha",
-    "morgan": "1.8.2",
-    "cookie-parser": "1.4.3",
+    "body-parser": "~1.17.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "express": "~4.15.2",
     "mongoose": "4.11.3",
-    "body-parser": "1.17.2",
-    "debug": "2.6.8"
+    "jade": "~1.11.0",
+    "morgan": "~1.8.1",
+    "serve-favicon": "~2.4.2"
   }
 }
